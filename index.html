@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kalkulator Persamaan Kuadrat</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+    h1 {
+        text-align: center;
+    }
+    form {
+        max-width: 400px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    label {
+        font-weight: bold;
+    }
+    input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0 15px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        float: right;
+    }
+    .result {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 1.2em;
+    }
+</style>
+</head>
+<body>
+    <h1>TUGAS BESAR KALKULUS - KALKULATOR PERSAMAAN KUADRAT</h1>
+    <h2>by Nanda Rahayu Widiyanti - Teknik Informatika</h2>
+
+    <form id="quadraticForm">
+        <label for="coefA">Koefisien a:</label>
+        <input type="text" id="coefA" name="coefA" required><br>
+        <label for="coefB">Koefisien b:</label>
+        <input type="text" id="coefB" name="coefB" required><br>
+        <label for="coefC">Koefisien c:</label>
+        <input type="text" id="coefC" name="coefC" required><br>
+        <input type="submit" value="Hitung">
+    </form>
+
+    <div id="result" class="result"></div>
+
+    <script>
+        document.getElementById("quadraticForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            // Mengambil nilai koefisien a, b, dan c dari form
+            let a = parseFloat(document.getElementById("coefA").value);
+            let b = parseFloat(document.getElementById("coefB").value);
+            let c = parseFloat(document.getElementById("coefC").value);
+            
+            // Menghitung diskriminan
+            let discriminant = b * b - 4 * a * c;
+            
+            // Inisialisasi variabel untuk hasil
+            let result;
+            
+            // Mengecek apakah diskriminan kurang dari 0
+            if (discriminant < 0) {
+                result = "Not Found";
+            } else {
+                // Menghitung akar-akar persamaan kuadrat
+                let x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+                let x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+                
+                // Format hasil dengan dua desimal
+                result = `Answer: x1 = ${x1.toFixed(2)}, x2 = ${x2.toFixed(2)}`;
+            }
+            
+            // Menampilkan hasil di dalam div dengan id "result"
+            document.getElementById("result").textContent = result;
+        });
+    </script>
+</body>
+</html>
